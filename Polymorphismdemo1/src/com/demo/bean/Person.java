@@ -58,21 +58,6 @@ abstract public class Person {
 		return "Id : "+perId+"\nName : "+perName+"\nMobile: "+mobile+"\nB date:"+bDate;
 		
 	}
-	/*public void display() {
-		System.out.println("Id : "+this.perId);
-		System.out.println("Name : "+this.perName);
-		System.out.println("bDate : ");
-		System.out.println("Mobile :"+mobile);
-		
-	}*/
-	
-	/*  this is destructor
-	 * public void finalize(){
-		
-	}*/
-	public void f1() {
-		
-	}
 	
 	
 
