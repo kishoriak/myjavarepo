@@ -1,13 +1,14 @@
 package com.demo.dao;
 
 import com.demo.bean.Employee;
+import com.demo.exception.EmployeeNotFoundException;
 
-public interface EmployeeDao {
+public interface EmployeeDao{
 	void addEmployee(Employee e);
 
-	Employee searchByEmpId(int id);
+	Employee searchByEmpId(int id) throws EmployeeNotFoundException;
 
-	boolean updateEmployee(int id,String ds);
+	boolean updateEmployee(String ds,Employee ob);
 
 	Employee[] getAllEmployees();
 
