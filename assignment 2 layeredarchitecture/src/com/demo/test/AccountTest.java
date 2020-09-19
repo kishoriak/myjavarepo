@@ -101,7 +101,7 @@ public class AccountTest {
 				break;
 			default: System.out.println("wrong option");
 			}
-		}while(choice!=7);
+		}while(choice!=0);
 		sc.close();
 
 	}
