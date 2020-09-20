@@ -3,6 +3,8 @@ package com.demo.test;
 import java.util.Scanner;
 
 import com.demo.bean.Employee;
+import com.demo.exception.EmployeeNotFoundException;
+import com.demo.exception.InvalidSalaryException;
 import com.demo.service.EmployeeService;
 import com.demo.service.EmployeeServiceImpl;
 
@@ -18,7 +20,12 @@ public class TestEmloyee {
 		choice=sc.nextInt();
 		switch(choice) {
 		case 1:
-			employeeService.addNewEmployee();
+			try {
+				employeeService.addNewEmployee();
+			} catch (InvalidSalaryException e3) {
+				System.out.println(e3.getMessage());
+				//e3.printStackTrace();
+			}
 			break;
 		case 2:
 			break;
@@ -27,22 +34,36 @@ public class TestEmloyee {
 			int id=sc.nextInt();
 			System.out.println("enter new desg");
 			String ds=sc.next();
-			boolean flag=employeeService.updateEmp(id,ds);
-			if(flag) {
-				System.out.println("updation done");
+			boolean flag;
+			try {
+				flag = employeeService.updateEmp(id,ds);
+				if(flag) {
+					System.out.println("updation done");
+				}
+				
+			} catch (EmployeeNotFoundException e3) {
+				// TODO Auto-generated catch block
+				System.out.println(e3.getMessage());
 			}
-			else {
-				System.out.println("Employee not found");
-			}
+			
 			break;
 		case 4:
-			System.out.println("enter Id");
-			id=sc.nextInt();
 			
-			Employee e=employeeService.searchById(id);
-			if(e!=null) {
-				System.out.println("employee found"+e);
+			Employee e;
+			try {
+				System.out.println("enter Id");
+				id=sc.nextInt();
+				e = employeeService.searchById(id);
+				if(e!=null) {
+					System.out.println("employee found"+e);
+				}
+				
+			} catch (EmployeeNotFoundException e2) {
+				// TODO Auto-generated catch block
+				//e2.printStackTrace();
+				System.out.println(e2.getMessage());
 			}
+			
 			
 			break;
 		case 5:

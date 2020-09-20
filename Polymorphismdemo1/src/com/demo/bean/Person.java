@@ -70,9 +70,9 @@ abstract public class Person {
 	 * public void finalize(){
 		
 	}*/
-	public void f1() {
+	/*public void f1() {
 		
-	}
+	}*/
 	
 	
 
