@@ -1,33 +1,32 @@
 package cmo.demo.dao;
 
+import java.util.HashMap;
+
 import com.demo.bean.Account;
 import com.demo.bean.CurrentAccount;
 import com.demo.bean.SavingAccount;
 import com.demo.exception.AccountNotFound;
 
 public class AccountDao implements AccountDaoInterface {
-	static Account[] acc;
-	static int cnt;
+	static HashMap<Integer, Account> acc;
 	
-	static {
-		acc = new Account[10];
-		cnt = 0;
+	public AccountDao() {
+		acc = new HashMap<>();
 	}
 
 	//add new account
 	@Override
 	public void addAccount(Account account) {
-		acc[cnt] = account;
-		cnt++;
+		acc.put(account.getId(), account);
 	}
 
 	//search account by id
 	@Override
 	public Account searchById(int id) throws AccountNotFound {
-		for (int i = 0; i < cnt; i++) {
-			if(acc[i].getId() == id) {
-				return acc[i];
-			}
+		Account account =  acc.get(id);
+		
+		if(account != null) {
+			return account;
 		}
 		throw new AccountNotFound("Account with id : " + id + " not exist!");
 	}
