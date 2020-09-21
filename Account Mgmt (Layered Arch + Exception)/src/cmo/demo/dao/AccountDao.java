@@ -14,12 +14,14 @@ public class AccountDao implements AccountDaoInterface {
 		cnt = 0;
 	}
 
+	//add new account
 	@Override
 	public void addAccount(Account account) {
 		acc[cnt] = account;
 		cnt++;
 	}
 
+	//search account by id
 	@Override
 	public Account searchById(int id) throws AccountNotFound {
 		for (int i = 0; i < cnt; i++) {
@@ -30,6 +32,7 @@ public class AccountDao implements AccountDaoInterface {
 		throw new AccountNotFound("Account with id : " + id + " not exist!");
 	}
 	
+	//helper function to get minimum balance
 	@Override
 	public double getMinBalance(Account account) {
 		if(account instanceof SavingAccount) {
@@ -40,12 +43,14 @@ public class AccountDao implements AccountDaoInterface {
 		return 0.0;
 	}
 
+	//deposit amount
 	@Override
 	public String depositAmt(Account account, double amt) {
 		account.setBalance(account.getBalance() + amt);
 		return "Amount deposited successfully";
 	}
 
+	//withdraw amount
 	@Override
 	public String withdrawAmt(Account account, double amt) {
 		double limit = getMinBalance(account);
@@ -56,6 +61,7 @@ public class AccountDao implements AccountDaoInterface {
 		return "Not Sufficient Account Balance";
 	}
 
+	//change pin of account
 	@Override
 	public void changePin(Account account, int newPin) {
 		account.setPinNumber(newPin);

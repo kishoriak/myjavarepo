@@ -35,7 +35,7 @@ public class TestAccount {
 					try {
 						id = AccountService.getIntInput("account id");
 						amt = AccountService.getDoubleInput("amount");
-						System.out.println(accountService.accDepositWithdraw(id, 'w', amt));
+						System.out.println(accountService.accWithdraw(id, amt));
 						flag = 1;
 					} catch (AmountIsNotValid e) {
 						e.printStackTrace();
@@ -51,7 +51,7 @@ public class TestAccount {
 					try {
 						id = AccountService.getIntInput("account id");
 						amt = AccountService.getDoubleInput("amount");
-						System.out.println(accountService.accDepositWithdraw(id, 'd', amt));
+						System.out.println(accountService.accDeposit(id, amt));
 						flag = 1;
 					} catch (AmountIsNotValid e) {
 						e.printStackTrace();

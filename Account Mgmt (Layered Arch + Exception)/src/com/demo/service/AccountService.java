@@ -17,6 +17,7 @@ public class AccountService implements AccountServiceInterface{
 		this.accountDao = new AccountDao();
 	}
 
+	//add new account
 	@Override
 	public String addAccount() {
 		Scanner sc = new Scanner(System.in);
@@ -48,23 +49,32 @@ public class AccountService implements AccountServiceInterface{
 		}
 	}
 			
-	//deposit to account / withdraw from account
+	//deposit to account
 	@Override
-	public String accDepositWithdraw(int id, char idf, double amt) throws AmountIsNotValid, AccountNotFound{
+	public String accDeposit(int id, double amt) throws AmountIsNotValid, AccountNotFound{
 		if(amt <= 0) {
 			throw new AmountIsNotValid("Please enter the valid amount");
 		}
 		Account account = accountDao.searchById(id);
 		if(account != null) {
-			if(idf == 'd') {
-				return accountDao.depositAmt(account, amt);
-			}else if(idf == 'w') {
-				return accountDao.withdrawAmt(account, amt);
-			}
+			return accountDao.depositAmt(account, amt);
 		}else {
 			return "Account not found";
 		}
-		return "";
+	}
+	
+	//withdraw from account
+	@Override
+	public String accWithdraw(int id, double amt) throws AmountIsNotValid, AccountNotFound {
+		if(amt <= 0) {
+			throw new AmountIsNotValid("Please enter the valid amount");
+		}
+		Account account = accountDao.searchById(id);
+		if(account != null) {
+			return accountDao.withdrawAmt(account, amt);
+		}else {
+			return "Account not found";
+		}
 	}
 	
 	public static int getIntInput(String msg) {
@@ -81,6 +91,7 @@ public class AccountService implements AccountServiceInterface{
 		return amount;
 	}
 	
+	//transfer funds from acc1 to acc2
 	@Override
 	public String transferFunds(int id1, int id2, double amt) throws AmountIsNotValid, AccountNotFound {
 		if(amt <= 0) {
@@ -96,6 +107,7 @@ public class AccountService implements AccountServiceInterface{
 		return "Fund transfer successfully";
 	}
 	
+	//change account pin
 	@Override
 	public String changePin(int id, int currentPin, int newPin) throws AccountNotFound {
 		Account account = accountDao.searchById(id);
@@ -107,6 +119,7 @@ public class AccountService implements AccountServiceInterface{
 		}
 	}
 	
+	//get account balance
 	@Override
 	public String getAccountBalance(int id) throws AccountNotFound {
 		Account account = accountDao.searchById(id);
@@ -117,6 +130,7 @@ public class AccountService implements AccountServiceInterface{
 		}
 	}
 	
+	//display account information
 	@Override
 	public String displayAccountInfo(int id) throws AccountNotFound {
 		Account account = accountDao.searchById(id);
@@ -132,4 +146,5 @@ public class AccountService implements AccountServiceInterface{
 			return "Account not found!";
 		}
 	}
+
 }
