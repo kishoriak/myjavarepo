@@ -1,5 +1,7 @@
 package com.demo.dao;
 
+import java.util.ArrayList;
+
 import com.demo.bean.Account;
 import com.demo.exception.InsufficientBalanceException;
 import com.demo.exception.UserNotFoundException;
@@ -12,6 +14,6 @@ public interface AccountDao {
 
 	void withdrawal(Account a,Double amt) throws InsufficientBalanceException;
 	
-	Account[] displayAll();
+	ArrayList<Account> displayAll();
 
 }

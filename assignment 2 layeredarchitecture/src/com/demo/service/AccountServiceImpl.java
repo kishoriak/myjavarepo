@@ -1,4 +1,5 @@
 package com.demo.service;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -162,7 +163,7 @@ public class AccountServiceImpl implements AccountService{
 	//to display data for all accounts
 	public void displayAllAccounts() {
 		
-		Account[] acc=accountDao.displayAll();
+		ArrayList<Account> acc=accountDao.displayAll();
 		for(Account a:acc) {
 			System.out.println(a);
 		}

@@ -1,0 +1,54 @@
+package com.demo.bean;
+
+import com.demo.exception.InsufficientBalanceException;
+
+public class current extends Account {
+	
+	private final int maxtransactions=3;
+	private static final float interestRate=0.2f;
+	private int nooftransactions;
+	//default constructor
+	public CurrentAcc() {
+		nooftransactions=0;
+		//System.out.println("default constructor current a/c");
+	}
+	//parameterized constructor
+	public CurrentAcc(String name,double bal,String type,int pin) {
+		super(name,bal,type,pin);
+		//System.out.println("Param constructor current a/c");
+		nooftransactions=0;
+	}
+	//setters and getters
+		public int getTrans() {
+			return this.nooftransactions;
+		}
+		public void setTrans(int trans) {
+			this.nooftransactions=trans;
+		}
+
+	
+	//overriding withdrawal method
+	public int withdrawal(double amt) throws InsufficientBalanceException{
+		if((getBalance())>=amt) {
+			setBalance(getBalance()-amt);
+			System.out.println("Successfully withdrawn from current a/c");
+			++nooftransactions;
+			return 1;
+		}
+		else 
+			throw new InsufficientBalanceException("Insufficient Balance");
+		//return -1;
+	}
+	//to get total interest
+	public double getInterest() {
+			return getBalance()*interestRate;
+	}
+	//toString method overridden
+	public String toString() {
+		return super.toString()+"\ninterest rate: "+this.interestRate+"\nno of transactions.: "
+				+this.nooftransactions+"\ntotal interest amt: "+this.getInterest();
+	}
+	
+	
+
+}
