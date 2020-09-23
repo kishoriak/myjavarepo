@@ -55,5 +55,17 @@ private ProductDao productDao;
 		productDao.writeDataToFile(fname);
 		
 	}
+	@Override
+	public boolean deleteProduct(int id) {
+		return productDao.deleteAProduct(id);
+	}
+	@Override
+	public boolean update(int id, double price, int qty) {
+		return productDao.updatePriceAndQuantity(id,price,qty);
+	}
+	@Override
+	public Product displayById(int id) {
+		return productDao.displayProductById(id);
+	}
 
 }
