@@ -74,5 +74,32 @@ public class ProductDaoImpl implements ProductDao{
 		}
 		
 	}
+	@Override
+	public boolean deleteAProduct(int id) {
+		Product p;
+		return hashSet.remove(p=new Product(id,null,0.0,0));
+	}
+	@Override
+	public boolean updatePriceAndQuantity(int id, double price, int qty) {
+		for(Product p:hashSet) {
+			System.out.println(p.getPid()+"--------"+id);
+			if(p.getPid()==id) {
+				p.setPrice(price);
+				p.setQty(qty);
+				return true;
+			}
+		}
+		return false;
+	}
+	@Override
+	public Product displayProductById(int id) {
+		
+		for(Product p:hashSet) {
+			if(p.hashCode()==id) {
+				return p;
+			}
+		}
+		return null;
+	}
 
 }
