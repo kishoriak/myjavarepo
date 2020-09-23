@@ -30,10 +30,38 @@ public class TestCRUDusingfile {
 			}
 			break;
 		case 2:
+			//delete a product
+			System.out.println("Enter product id : ");
+			int id=sc.nextInt();
+			flag=productService.deleteProduct(id);
+			if(flag) {
+				System.out.println("Product deleted");
+			}
+			else {
+				System.out.println("Product not deleted");
+			}
 			break;
 		case 3:
+			//update the price and quantity
+			System.out.println("Enter product id : ");
+			id=sc.nextInt();
+			System.out.println("Enter new price : ");
+			double price=sc.nextDouble();
+			System.out.println("Enter new quantity : ");
+			int qty=sc.nextInt();
+			flag=productService.update(id,price,qty);
+			if(flag) {
+				System.out.println("Product updated");
+			}
+			else {
+				System.out.println("Product not updated");
+			}
 			break;
 		case 4:
+			//display by id
+			System.out.println("Enter product id : ");
+			id=sc.nextInt();
+			System.out.println(productService.displayById(id));
 			break;
 		case 5:
 			//get all products
