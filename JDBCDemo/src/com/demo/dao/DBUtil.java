@@ -8,9 +8,9 @@ public class DBUtil {
 	static Connection conn=null;
 	public static Connection getMyConnection() {
 		if(conn==null) {
-			String url = "jdbc:derby:c:\\mydata\\hsbcdb";
-	        String user = "hsbc";
-	        String password = "hsbc123";
+			String url = "jdbc:mysql://localhost:3306/testDb";
+			String user = "root";
+			String password = "Hrushikesh@1";
 	        try {
 				conn = DriverManager.getConnection(url, user, password);
 				if (conn != null) {
