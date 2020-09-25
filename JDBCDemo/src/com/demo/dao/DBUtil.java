@@ -8,7 +8,7 @@ public class DBUtil {
 	static Connection conn=null;
 	public static Connection getMyConnection() {
 		if(conn==null) {
-			String url = "jdbc:derby:c:\\mydata\\hsbcdb";
+			String url = "jdbc:derby:C:\\\\Users\\\\Admin\\\\mydata\\\\hsbcdb";
 	        String user = "hsbc";
 	        String password = "hsbc123";
 	        try {
