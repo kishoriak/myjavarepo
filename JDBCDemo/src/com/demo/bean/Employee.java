@@ -8,10 +8,6 @@ public class Employee {
 	private double sal;
 	private Date doj;
 	private int deptid;
-	
-	public Employee() {
-		super();
-	}
 
 	public Employee(int empid, String ename, double sal, Date doj, int deptid) {
 		super();
@@ -67,6 +63,5 @@ public class Employee {
 		return "Employee [empid=" + empid + ", ename=" + ename + ", sal=" + sal + ", doj=" + doj + ", deptid=" + deptid
 				+ "]";
 	}
-	
 
 }

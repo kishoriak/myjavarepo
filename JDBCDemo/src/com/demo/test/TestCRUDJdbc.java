@@ -2,72 +2,63 @@ package com.demo.test;
 
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-
 import com.demo.bean.Employee;
 import com.demo.service.EmployeeService;
-import com.demo.service.EmployeeServiceImpl;
 
 public class TestCRUDJdbc {
 	public static void main(String[] args) {
-	int choice=0;
-	Scanner sc=new Scanner(System.in);
-	//service class object to call methods of service layer
-	EmployeeService employeeService=new EmployeeServiceImpl();
-	do {
-	System.out.println("1. add new Employee\n 2. Delete Employee \n3. update desg");
-	System.out.println("4. search by by id\n 5. Display all\n 7. Exit");
-	System.out.println("choice: ");
-	choice=sc.nextInt();
-	//switcase for all option
-	switch(choice) {
-	case 1:
-		employeeService.addEmployee();
-		break;
-	case 2:
-		System.out.println("Enter id");
-		int id=sc.nextInt();
-		boolean flag=employeeService.deleteEmployee(id);
-		if (flag) {
-			System.out.println("deletion done");
-		}
-		else {
-			System.out.println("Employee not found");
-		}
+		int choice = 0, id;
+		Scanner sc = new Scanner(System.in);
 		
-		break;
-	case 3:
+		// service class object to call methods of service layer
+		EmployeeService employeeService = new EmployeeService();
 		
-		
-		break;
-	case 4:
-		System.out.println("Enter id");
-		 id=sc.nextInt();
-		Employee e=employeeService.SearchById(id);
-		if(e!=null) {
-			System.out.println(e);
+		while (true) {
+			System.out.println("1. add new Employee \n2. Delete Employee \n3. update name");
+			System.out.println("4. search by by id \n5. Display all \n6. Exit");
+			System.out.println("choice: ");
+			choice = sc.nextInt();
+			// switch case for all option
+			switch (choice) {
+			case 1:
+				System.out.println(employeeService.addEmployee());
+				break;
+			case 2:
+				System.out.println("Enter id");
+				id = sc.nextInt();
+				System.out.println(employeeService.deleteEmployee(id));
+				break;
+			case 3:
+				System.out.println("Enter id");
+				id = sc.nextInt();
+				System.out.println("Enter new name");
+				String name = sc.next();
+				System.out.println(employeeService.updateName(id, name));
+				break;
+			case 4:
+				System.out.println("Enter id");
+				id = sc.nextInt();
+				Employee e = employeeService.SearchById(id);
+				if (e != null) {
+					System.out.println(e);
+				} else {
+					System.out.println("employee not found");
+				}
+
+				break;
+			case 5:
+				List<Employee> plist = employeeService.getAllEmployee();
+				for (Employee per : plist) {
+					System.out.println(per);
+				}
+				break;
+			case 6:
+				sc.close();
+				employeeService.closeConnection();
+				System.exit(0);
+				break;
+			}
 		}
-		else {
-			System.out.println("not found");
-		}
-		
-		
-		break;
-	case 5:
-		List<Employee> plist=employeeService.getAllEmployee();			
-		for(Employee per:plist) {
-			System.out.println(per);
-		}
-		//elist.forEach(e1->{System.out.println(e1);});  //consumer
-		//elist.forEach(System.out::println);
-		break;
-	case 7:
-		sc.close();
-		employeeService.closeConnection();
-		System.exit(0);
-		break;
 	}
-	}while(choice!=7);
-}
 
 }
