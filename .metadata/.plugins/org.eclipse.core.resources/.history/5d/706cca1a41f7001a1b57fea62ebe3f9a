@@ -1,0 +1,10 @@
+
+public class PersonService {
+	public void acceptPersonData(Person[] parr) {
+		
+	}
+	public void displayPerson(Person[] parr) {
+		
+	}
+
+}

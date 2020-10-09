@@ -17,7 +17,6 @@ public class Storage {
     	 System.out.println("set N "+n);
     	 notify();
      }
-    
    synchronized  public void getN() {
 	   if(!flag) {
 		   try {
