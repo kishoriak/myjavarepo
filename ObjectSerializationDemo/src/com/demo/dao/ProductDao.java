@@ -14,6 +14,12 @@ public interface ProductDao {
 
 	void writeDataToFile(String fname);
 
+	boolean deleteAProduct(int id);
+
+	boolean updatePriceAndQuantity(int id, double price, int qty);
+
+	Product displayProductById(int id);
+
 
 
 }
