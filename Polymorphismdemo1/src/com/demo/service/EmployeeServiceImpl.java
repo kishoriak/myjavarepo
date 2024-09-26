@@ -9,8 +9,11 @@ import com.demo.bean.Employee;
 import com.demo.bean.SalariedEmp;
 import com.demo.dao.EmployeeDao;
 import com.demo.dao.EmployeeDaoImpl;
+
+=======
 import com.demo.exception.EmployeeNotFoundException;
 import com.demo.exception.InvalidSalaryException;
+
 
 public class EmployeeServiceImpl implements EmployeeService {
 	static {
@@ -26,7 +29,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
      
 	@Override
+
+	public void addNewEmployee() {
+=======
 	public void addNewEmployee() throws InvalidSalaryException{
+
 		System.out.println("enter Id");
 		int id=sc.nextInt();
 		System.out.println("enter Name");
@@ -38,6 +45,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String dt=sc.next();
 		System.out.println("enter desg");
 		String ds=sc.next();
+
+		System.out.println("enter Salary");
+		double sal=sc.nextDouble();
+		System.out.println("enter bonus");
+		float bonus=sc.nextFloat();
+		System.out.println("enter bdate");
+		String bdate=sc.next();
+		try {
+			Date bdt=sdf.parse(bdate);
+			Employee e=new SalariedEmp(id,nm,bdt,mob,dt,ds,sal,bonus);
+			employeeDao.addEmployee(e);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+=======
 		int i=0;
 		for(i=0;i<3;i++) {
 			try {
@@ -66,6 +88,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				System.out.println(e.getMessage());
 				
 			}
+
 		}
 		
 		
@@ -73,17 +96,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 	}
 	@Override
+
+	public Employee searchById(int id) {
+=======
 	public Employee searchById(int id) throws EmployeeNotFoundException {
+
 		return employeeDao.searchByEmpId(id);
 		
 	}
 	@Override
+
+	public boolean updateEmp(int id,String ds) {
+		return employeeDao.updateEmployee(id,ds);
+=======
 	public boolean updateEmp(int id,String ds) throws EmployeeNotFoundException {
 		Employee e=employeeDao.searchByEmpId(id);
 		if(e!=null) {
 		return employeeDao.updateEmployee(ds,e);
 		}
 		return false;
+
 		
 	}
 	@Override
